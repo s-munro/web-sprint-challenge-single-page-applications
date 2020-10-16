@@ -6,8 +6,10 @@ export default yup.object().shape({
     .string()
     .required('name is required')
     .min(2, 'name must be at least 2 characters'),
-    
-  size: yup.string().oneOf(['small', 'medium', 'large'], 'size is required'),
+
+  size: yup
+  .string()
+  .oneOf([ 'small', 'medium', 'large' ], 'size is required'),
 
   sauce: yup.string().oneOf(['red', 'garlicRanch', 'bbq', 'spinAlfredo' ]),
 

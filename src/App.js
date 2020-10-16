@@ -106,7 +106,7 @@ const App = () => {
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
-      setdisabled(valid);
+      setdisabled(!valid);
     });
   },
   [ formValues ]
@@ -120,12 +120,8 @@ const App = () => {
     <div>
       <nav>
         <div>LAMBDA EATS</div>
-        <BrowserRouter>
-        <Link to=''>Home</Link>
-        </BrowserRouter>
-        <BrowserRouter>
-        <Link to=''>Help</Link>
-        </BrowserRouter>
+        <Link to='/'>Home</Link>
+        <Link to='/'>Help</Link>
       </nav> 
       <div className='hero-img'>
         <h2>Your favorite food delivered while coding</h2>
@@ -134,7 +130,7 @@ const App = () => {
 
     <>
       <Switch>
-        <Route exact path={'/pizza'}>
+        <Route path={'/pizza'}>
           <Form
           values={formValues}
           change={inputChange}
@@ -147,7 +143,7 @@ const App = () => {
         <Route path={'/Pizza'}>
           <Pizza />
         </Route> */}
-        <Route path={''}>
+        <Route path={'/'}>
           <Home />
         </Route>
       </Switch>

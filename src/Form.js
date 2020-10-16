@@ -1,8 +1,9 @@
 import React from 'react';
+import './App.css'
 
 
 export default function Form (props) {
-const { values, update, submit, change, disabled, errors } = props;
+const { values, submit, change, disabled, errors } = props;
 
 const onChange = (evt) => {
   const { name, value, type, checked } = evt.target;
@@ -20,6 +21,7 @@ const onSubmit = (evt) => {
 <form className='form-container' onSubmit={onSubmit}>
 <div className='form-image'></div>
 <h3>Build Your Own Pizza</h3>
+<div className='name-div'>
 <label>
   Name
   <input 
@@ -29,6 +31,18 @@ const onSubmit = (evt) => {
   type='text'
   />
 </label>
+<div>{errors.name}</div>
+<div>{errors.size}</div>
+<div>{errors.sauce}</div>
+<div>{errors.pepperoni}</div>
+<div>{errors.sausage}</div>
+<div>{errors.peppers}</div>
+<div>{errors.onions}</div>
+<div>{errors.pineapple}</div>
+<div>{errors.chicken}</div>
+<div>{errors.glutenFree}</div>
+<div>{errors.instructions}</div>
+</div>
 <label>
   Choice of Size
   <select name='size' value={values.size} onChange={onChange}>
@@ -185,7 +199,7 @@ const onSubmit = (evt) => {
 </label>
 
 <button
-// disabled={disabled}
+disabled={disabled}
 >Add to Order</button>
 
 </div>
