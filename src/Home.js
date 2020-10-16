@@ -16,9 +16,10 @@ history.push('/pizza');
     <div className='home-wrapper'>
        <section className='section'>
     <h3>Food Delivery in Gotham City</h3>
-    <button onClick={routeToForm}>Pizza?</button>
+    <button id='pizzaBtn' onClick={routeToForm}>Pizza?</button>
     <div className='top-3'>
     <div className='store-container'>
+
       <h4>McDonalds</h4>
       <h5>$ - American - Fast Food - Burgers</h5>
       <div>20-30 Min</div>

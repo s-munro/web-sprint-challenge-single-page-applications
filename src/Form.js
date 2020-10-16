@@ -199,6 +199,7 @@ const onSubmit = (evt) => {
 </label>
 
 <button
+id="submitBtn"
 disabled={disabled}
 >Add to Order</button>
 
