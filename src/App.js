@@ -16,10 +16,11 @@ const initialFormValues = {
   sauce: 'red',
   pepperoni: false,
   sausage: false,
-  onion: false,
+  onions: false,
   peppers: false,
   pineapple: false,
   chicken: false,
+  glutenFree: false,
   instructions: ''
 };
 const initialFormErrors = {
@@ -39,28 +40,35 @@ const App = () => {
   const [ formErrors, setFormErrors ] = useState(initialFormErrors);
   const [ disabled, setdisabled ] = useState(initialDisabled);
 
-  const getFriends = () => {
-    axios
-    .get('http://localhost:3001/pizzas')
-    .then((res) => {
-      setPizzas(res.data)
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  };
+  // const getPizzas = () => {
+  //   axios
+  //   .get('http://localhost:3001/pizzas')
+  //   .then((res) => {
+  //     setPizzas(res.data)
+  //     console.log('hello success axios', res);
+  //   })
+  //   .catch((err) => {
+  //     console.log('hello error', err);
+  //   });
+  // };
 
   const postNewPizza = (newPizza) => {
-    axios
-    .post('http://localhost:3001/pizzas', newPizza)
-    .then((res) => {
-      setPizzas([ res.data, ...pizzas ]);
-      setFormValues(initialFormValues);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    // axios
+    // .post('http://localhost:3001/pizzas', newPizza)
+    // .then((res) => {
+    //   setPizzas([ res.data, ...pizzas ]);
+    //   setFormValues(initialFormValues);
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
+    console.log(newPizza)
+    console.log(pizzas);
+    setPizzas([newPizza, ...pizzas]);
+    setFormValues(initialFormValues);
+    pizzas.push(newPizza);
+    console.log('newpizzas', pizzas);
+    return newPizza, pizzas;
   }
 
   const inputChange = (name, value) => {
@@ -92,10 +100,24 @@ const App = () => {
       size: formValues.size,
       sauce: formValues.sauce,
       toppings : ['pepperoni', 'sausage', 'onions', 'peppers', 'pineapple', 'chicken' ].filter((top) => formValues[top]),
+      glutenFree: formValues.glutenFree,
       instructions: formValues.instructions
     };
     postNewPizza(newPizza)
   }
+
+  // useEffect(() => {
+  //   getPizzas();
+
+  // }, []);
+
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setdisabled(valid);
+    });
+  },
+  [ formValues ]
+  );
 
 
 

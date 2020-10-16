@@ -17,7 +17,7 @@ const onSubmit = (evt) => {
 
 
   return (
-    <div className='form-wrapper'>
+<form className='form-container' onSubmit={onSubmit}>
 <div className='form-image'></div>
 <h3>Build Your Own Pizza</h3>
 <label>
@@ -30,8 +30,7 @@ const onSubmit = (evt) => {
   />
 </label>
 <label>
-  Choice of Size <br/>
-  Required
+  Choice of Size
   <select name='size' value={values.size} onChange={onChange}>
     <option value=''>Select</option>
     <option value='Large'>Large</option>
@@ -198,6 +197,6 @@ const onSubmit = (evt) => {
 
 
 
-    </div>
+</form>
   )
 }
