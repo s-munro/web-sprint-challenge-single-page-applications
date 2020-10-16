@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import * as yup from 'yup'
-import axios from 'axios'
+import * as yup from 'yup';
+import axios from 'axios';
 import Home from './Home';
-import Form from './Form'
-import schema from './formSchema'
-// import Pizza from './Pizza'
+import Form from './Form';
+import schema from './formSchema';
+import './App.css';
 
 
 
@@ -31,9 +31,6 @@ const initialFormErrors = {
 const initialPizzas = [];
 const initialDisabled = true;
 
-
-
-
 const App = () => {
   const [ pizzas, setPizzas] = useState(initialPizzas)
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -42,7 +39,7 @@ const App = () => {
 
   // const getPizzas = () => {
   //   axios
-  //   .get('http://localhost:3001/pizzas')
+  //   .get('https://reqres.in/api/users')
   //   .then((res) => {
   //     setPizzas(res.data)
   //     console.log('hello success axios', res);
@@ -53,22 +50,18 @@ const App = () => {
   // };
 
   const postNewPizza = (newPizza) => {
-    // axios
-    // .post('http://localhost:3001/pizzas', newPizza)
-    // .then((res) => {
-    //   setPizzas([ res.data, ...pizzas ]);
-    //   setFormValues(initialFormValues);
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // })
-    console.log(newPizza)
-    console.log(pizzas);
-    setPizzas([newPizza, ...pizzas]);
-    setFormValues(initialFormValues);
-    pizzas.push(newPizza);
-    console.log('newpizzas', pizzas);
-    return newPizza, pizzas;
+    axios
+    .post('https://reqres.in/api/users', newPizza)
+    .then((res) => {
+      setPizzas([ res.data, ...pizzas ]);
+      setFormValues(initialFormValues);
+      console.log('pizzas', pizzas);
+      pizzas.push(res.data);
+      console.log(pizzas);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   const inputChange = (name, value) => {
@@ -91,7 +84,7 @@ const App = () => {
     setFormValues({
       ...formValues,
       [name] : value
-    })
+    });
   }
 
   const formSubmit = () => {
@@ -128,10 +121,10 @@ const App = () => {
       <nav>
         <div>LAMBDA EATS</div>
         <BrowserRouter>
-        <Link to='/'>Home</Link>
+        <Link to=''>Home</Link>
         </BrowserRouter>
         <BrowserRouter>
-        <Link to='/'>Help</Link>
+        <Link to=''>Help</Link>
         </BrowserRouter>
       </nav> 
       <div className='hero-img'>
@@ -140,9 +133,8 @@ const App = () => {
 
 
     <>
-      <BrowserRouter>
       <Switch>
-        <Route path={'/pizza'}>
+        <Route exact path={'/pizza'}>
           <Form
           values={formValues}
           change={inputChange}
@@ -155,12 +147,10 @@ const App = () => {
         <Route path={'/Pizza'}>
           <Pizza />
         </Route> */}
-
-        <Route path={'/'}>
+        <Route path={''}>
           <Home />
         </Route>
       </Switch>
-      </BrowserRouter>
       </>
     </div>
   );
