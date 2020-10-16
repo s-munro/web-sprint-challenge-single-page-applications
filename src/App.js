@@ -18,15 +18,10 @@ const App = () => {
       </nav> 
       <div className='hero-img'>
         <h2>Your favorite food delivered while coding</h2>
-        <BrowserRouter>
-        <Link to='/pizza'>Pizza?</Link>
-        </BrowserRouter>
       </div>
 
 
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
       <BrowserRouter>
       <Switch>
         <Route path={'/pizza'}>
